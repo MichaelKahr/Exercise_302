@@ -1,5 +1,6 @@
 package GUI;
 
+import BL.Field;
 import BL.GewinntBL;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -9,10 +10,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class GewinntGUI extends JFrame {
 
     private GewinntBL bl = new GewinntBL();
+    private JLabel[][] labels = new JLabel[7][7];
 
     public GewinntGUI() throws HeadlessException {
         int rows = 7;
@@ -28,7 +31,11 @@ public class GewinntGUI extends JFrame {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    JButton bt = (JButton)e.getSource();
+                    System.out.println(bt.getName());
+                    int res = bl.makeMove(Integer.parseInt(bt.getName()));
+                    Field changed = bl.field[Integer.parseInt(bt.getName())][res];
+                    labels[Integer.parseInt(bt.getName())][res].setBackground(changed.getC());
                 }
             });
         }
@@ -38,7 +45,8 @@ public class GewinntGUI extends JFrame {
                 label.setName("" + i + " " + j);
                 label.setBackground(Color.black);
                 label.setOpaque(true);
-                this.add(label);
+                labels[j][i]=label;
+                this.add(labels[j][i]);
             }
         }
 
