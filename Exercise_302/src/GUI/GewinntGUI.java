@@ -32,15 +32,14 @@ public class GewinntGUI extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JButton bt = (JButton) e.getSource();
-                    //System.out.println(bt.getName());
+                    System.out.println(bt.getName());
                     int res = bl.makeMove(Integer.parseInt(bt.getName()));
-                    System.out.println(res);
                     Field changed = bl.field[Integer.parseInt(bt.getName())][res];
                     labels[Integer.parseInt(bt.getName())][res].setBackground(changed.getC());
-                    
+
                     Field winner = bl.testWinner();
-                    if(winner !=Field.DRAW){
-                        JOptionPane.showMessageDialog(null, "The winner is: "+winner);
+                    if (winner != Field.DRAW) {
+                        JOptionPane.showMessageDialog(null, "The winner is: " + winner);
                     }
                 }
             });
