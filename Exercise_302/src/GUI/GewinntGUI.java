@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class GewinntGUI extends JFrame {
 
     private GewinntBL bl = new GewinntBL();
-    private JLabel[][] labels = new JLabel[7][7];
+    private JLabel[][] labels = new JLabel[7][6];
 
     public GewinntGUI() throws HeadlessException {
         int rows = 7;
@@ -32,7 +32,7 @@ public class GewinntGUI extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JButton bt = (JButton) e.getSource();
-                    System.out.println(bt.getName());
+                    //System.out.println(bt.getName());
                     int res = bl.makeMove(Integer.parseInt(bt.getName()));
                     Field changed = bl.field[Integer.parseInt(bt.getName())][res];
                     labels[Integer.parseInt(bt.getName())][res].setBackground(changed.getC());
@@ -50,8 +50,8 @@ public class GewinntGUI extends JFrame {
                 label.setName("" + i + " " + j);
                 label.setBackground(Color.black);
                 label.setOpaque(true);
-                labels[j][i] = label;
-                this.add(labels[j][i]);
+                labels[j][i-1] = label;
+                this.add(labels[j][i-1]);
             }
         }
 
