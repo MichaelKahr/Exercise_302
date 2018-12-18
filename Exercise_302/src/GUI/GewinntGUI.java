@@ -44,6 +44,7 @@ public class GewinntGUI extends JFrame {
                 }
             });
         }
+        
         for (int i = 1; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 JLabel label = new JLabel();

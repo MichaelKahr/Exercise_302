@@ -35,9 +35,8 @@ public class GewinntBL {
         //Check vertical
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 4; j++) {
-                if (field[i][j] == Field.EMPTY) {
-//                    return Field.EMPTY;
-                } else {
+                if (field[i][j] != Field.EMPTY) {
+
                     try {
                         if (field[i][j] == field[i][j + 1] && field[i][j + 2] == field[i][j + 3] && field[i][j] == field[i][j + 3]) {
                             return field[i][j];
@@ -50,19 +49,14 @@ public class GewinntBL {
         }
         //Chech horizontally
         for (int y = 0; y < 6; y++) {
-//            System.out.println("schleife 1");
             for (int x = 0; x <= 5; x++) {
-                //System.out.println("schleife 2");
                 System.out.println(field[x][y] + "x: " + x + "Y: " + y);
                 if (field[x][y] != Field.EMPTY) {
-                    //System.out.println("if");
                     try {
-                        System.out.println("x: " + field[y][x] + " x+1" + field[y][x + 1] + " X+2 " + field[y][x + 2] + "x+3 " + field[y][x + 3]);
                         if (field[x][y] == field[x + 1][y] && field[x + 2][y] == field[x + 3][y] && field[x][y] == field[x + 3][y]) {
                             return field[x][y];
                         }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
                     }
                 }
 
@@ -71,9 +65,8 @@ public class GewinntBL {
         //Check left top
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 3; x++) {
-                if (field[x][y] == Field.EMPTY) {
+                if (field[x][y] != Field.EMPTY) {
 
-                } else {
                     try {
                         if (field[x][y] == field[x + 1][y + 1] && field[x + 2][y + 2] == field[x + 3][y + 3] && field[x][y] == field[x + 3][y + 3]) {
                             return field[x][y];
@@ -87,9 +80,8 @@ public class GewinntBL {
         //Check left bottom
         for (int y = 0; y < 4; y++) {
             for (int x = 5; x > 2; x--) {
-                if (field[x][y] == Field.EMPTY) {
+                if (field[x][y] != Field.EMPTY) {
 
-                } else {
                     try {
                         if (field[x][y] == field[x - 1][y + 1] && field[x - 2][y + 2] == field[x - 3][y + 3] && field[x][y] == field[x - 3][y + 3]) {
                             return field[x][y];
@@ -101,10 +93,9 @@ public class GewinntBL {
             }
         }
         //Check right top
-        for (int y = 6; y > 2; y--) {
-            for (int x = 0; x < 3; x++) {
+        for (int y = 5; y >= 3; y--) {
+            for (int x = 0; x <= 3; x++) {
                 if (field[x][y] != Field.EMPTY) {
-
                     try {
                         if (field[x][y] == field[x + 1][y - 1] && field[x + 2][y - 2] == field[x + 3][y - 3] && field[x][y] == field[x + 3][y - 3]) {
                             return field[x][y];
@@ -118,9 +109,7 @@ public class GewinntBL {
         //Check right bottom
         for (int y = 5; y >= 3; y--) {
             for (int x = 6; x >= 3; x--) {
-                if (field[x][y] == Field.EMPTY) {
-
-                } else {
+                if (field[x][y] != Field.EMPTY) {
                     if (field[x][y] == field[x - 1][y - 1] && field[x - 2][y - 2] == field[x - 3][y - 3] && field[x][y] == field[x - 3][y - 3]) {
                         return field[x][y];
                     }
