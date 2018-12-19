@@ -17,14 +17,15 @@ public class GewinntBL {
         }
     }
 
-    public int makeMove(int x) {
-        //System.out.println("abc");
+    public int makeMove(int x) throws Exception {
+        if(x<0||x>6){
+            throw new Exception("Please enter a valid column");
+        }
         for (int i = 5; i >= 0; i--) {
             //System.out.println(i);
             if (field[x][i] == Field.EMPTY) {
                 field[x][i] = currentPlayer;
                 currentPlayer = (currentPlayer == Field.P1) ? Field.P2 : Field.P1;
-                //System.out.println(i);
                 return i;
             }
         }
