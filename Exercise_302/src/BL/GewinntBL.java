@@ -18,7 +18,7 @@ public class GewinntBL {
     }
 
     public int makeMove(int x) throws Exception {
-        if(x<0||x>6){
+        if (x < 0 || x > 6) {
             throw new Exception("Please enter a valid column");
         }
         for (int i = 5; i >= 0; i--) {

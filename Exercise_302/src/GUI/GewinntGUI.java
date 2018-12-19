@@ -15,10 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class GewinntGUI extends JFrame {
-
+    
     private GewinntBL bl = new GewinntBL();
     private JLabel[][] labels = new JLabel[7][6];
-
+    
     public GewinntGUI() throws HeadlessException {
         int rows = 7;
         int cols = 7;
@@ -43,7 +43,7 @@ public class GewinntGUI extends JFrame {
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
-
+                    
                     Field winner = bl.testWinner();
                     if (winner != Field.DRAW) {
                         JOptionPane.showMessageDialog(null, "The winner is: " + winner);
@@ -51,7 +51,7 @@ public class GewinntGUI extends JFrame {
                 }
             });
         }
-
+        
         for (int i = 1; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 JLabel label = new JLabel();
@@ -62,9 +62,9 @@ public class GewinntGUI extends JFrame {
                 this.add(labels[j][i - 1]);
             }
         }
-
+        
     }
-
+    
     public static void main(String[] args) {
         new GewinntGUI().setVisible(true);
     }
