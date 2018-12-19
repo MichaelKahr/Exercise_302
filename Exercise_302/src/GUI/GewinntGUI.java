@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,9 +35,14 @@ public class GewinntGUI extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     JButton bt = (JButton) e.getSource();
                     //System.out.println(bt.getName());
-                    int res = bl.makeMove(Integer.parseInt(bt.getName()));
-                    Field changed = bl.field[Integer.parseInt(bt.getName())][res];
-                    labels[Integer.parseInt(bt.getName())][res].setBackground(changed.getC());
+                    int res;
+                    try {
+                        res = bl.makeMove(Integer.parseInt(bt.getName()));
+                        Field changed = bl.field[Integer.parseInt(bt.getName())][res];
+                        labels[Integer.parseInt(bt.getName())][res].setBackground(changed.getC());
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                    }
 
                     Field winner = bl.testWinner();
                     if (winner != Field.DRAW) {
@@ -44,15 +51,15 @@ public class GewinntGUI extends JFrame {
                 }
             });
         }
-        
+
         for (int i = 1; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 JLabel label = new JLabel();
                 label.setName("" + i + " " + j);
                 label.setBackground(Color.black);
                 label.setOpaque(true);
-                labels[j][i-1] = label;
-                this.add(labels[j][i-1]);
+                labels[j][i - 1] = label;
+                this.add(labels[j][i - 1]);
             }
         }
 
